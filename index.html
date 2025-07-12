@@ -1,34 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitor Kebisingan</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitoring Kebisingan</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Monitor Kebisingan Ruangan</h1>
-    <button id="startButton">Mulai Monitoring</button>
-    <p id="status">Status: Belum Dimulai</p>
-    
-    <!-- Bagian tabel yang di-scroll -->
-    <div id="reportContainer" style="max-height: 300px; overflow-y: auto;">
-        <table id="reportTable" hidden>
-            <thead>
-                <tr>
-                    <th>Waktu</th>
-                    <th>Level Suara (dB)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Data laporan akan muncul di sini -->
-            </tbody>
-        </table>
-    </div>
+  <h1>Monitoring Kebisingan Ruangan</h1>
 
-    <!-- Tombol untuk mengunduh laporan -->
-    <button id="downloadReportButton" disabled>Unduh Laporan</button>
+  <div class="center">
+    <button id="toggleButton" onclick="toggleMonitoring()" class="circle-btn">▶️</button>
+    <button id="restartButton" onclick="restartMonitoring()" class="circle-btn" style="display: none;">🔄</button>
+    <h2 id="dbDisplay">dB: -</h2>
+    <div id="statusBox">Status</div>
+  </div>
 
-    <script src="script.js"></script>
+  <canvas id="dbChart" width="400" height="200"></canvas>
+
+  <h3>Riwayat Kebisingan</h3>
+  <table id="logTable">
+    <thead>
+      <tr><th>Waktu</th><th>dB</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div class="center">
+    <button onclick="showReport()" class="report-btn">📄 Lihat Laporan</button>
+  </div>
+
+  <!-- Tambahan tombol untuk ke dashboard -->
+  <div class="center" style="margin-top: 20px;">
+    <a href="dashboard.html" class="report-btn">📊 Buka Dashboard</a>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

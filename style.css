@@ -1,121 +1,117 @@
-/* Pengaturan Umum */
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-    color: #333;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0 15px;
+  color: #333;
 }
 
 h1 {
-    text-align: center;
-    font-size: 24px;
-    margin-top: 20px;
-    color: #4CAF50;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 1.5rem;
 }
 
-/* Desain Tombol */
+.center {
+  text-align: center;
+  margin: 20px 0;
+}
+
 button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 20px;
-    font-size: 18px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-button:hover {
-    background-color: #45a049;
+/* Tombol bulat */
+.circle-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  border: none;
+  margin: 5px;
+  color: white;
+  background-color: #2196F3;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.circle-btn:hover {
+  background-color: #1976D2;
 }
 
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+/* Tombol laporan */
+.report-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #FF9800;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.report-btn:hover {
+  background-color: #e68900;
 }
 
-/* Container Tabel dan Scroll */
-#reportContainer {
-    margin-top: 20px;
-    max-height: 400px;
-    overflow-y: auto;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px;
+#dbDisplay {
+  margin-top: 15px;
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 
-/* Desain Tabel */
+#statusBox {
+  padding: 10px 20px;
+  font-weight: bold;
+  color: white;
+  width: fit-content;
+  margin: 10px auto;
+  border-radius: 20px;
+  font-size: 1rem;
+  background-color: gray;
+}
+
+canvas {
+  max-width: 100%;
+  margin: 20px auto;
+  display: block;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    font-size: 14px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+td {
+  font-size: 0.9rem;
 }
 
-table th, table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    word-wrap: break-word;
-}
-
-table th {
-    background-color: #f1f1f1;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-/* Responsive untuk Handphone */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 20px;
-    }
-
-    button {
-        font-size: 16px;
-    }
-
-    table {
-        font-size: 12px;
-    }
-
-    table th, table td {
-        padding: 10px;
-    }
-}
-
-@media (max-width: 400px) {
-    button {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    h1 {
-        font-size: 18px;
-    }
-}
-
-/* Efek Notifikasi */
-.notification {
-    background-color: #f44336;
-    color: white;
-    padding: 15px;
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    border-radius: 8px;
-    font-size: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: none;
-}
-
-/* Pesan Notifikasi Aktif */
-.notification.show {
-    display: block;
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.3rem;
+  }
+  #dbDisplay {
+    font-size: 1.2rem;
+  }
+  .circle-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
 }

@@ -1,141 +1,180 @@
-const startBtn = document.getElementById('startButton');
-const statusText = document.getElementById('status');
-const tableBody = document.querySelector('#reportTable tbody');
-const downloadBtn = document.getElementById('downloadReportButton');
+let chart;
+let dbData = [];
+let timeLabels = [];
+let allLogs = [];
+let monitoring = false;
+let intervalId;
+let analyser, dataArray, audioContext, stream;
 
-let audioContext, micStream, analyser, dataArray, animationId;
-let reportData = [];
-let notified = false;
+let lastNotificationTime = 0;
+const NOTIF_INTERVAL = 60000; // 1 menit
 
-// Meminta izin akses mikrofon dan notifikasi
-async function requestPermissions() {
-  try {
-    // Meminta izin akses mikrofon
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    
-    // Meminta izin untuk notifikasi
-    if (Notification.permission !== 'granted') {
-      const permission = await Notification.requestPermission();
-      if (permission !== 'granted') {
-        alert('Izin notifikasi dibutuhkan agar pemberitahuan bekerja.');
-      }
+async function toggleMonitoring() {
+  const toggleButton = document.getElementById("toggleButton");
+  const restartButton = document.getElementById("restartButton");
+
+  if (!monitoring) {
+    // Minta izin notifikasi
+    if ("Notification" in window && Notification.permission !== "granted") {
+      await Notification.requestPermission();
     }
 
-    return stream;
-  } catch (err) {
-    alert('Gagal akses mikrofon: ' + err.message);
-    throw err; // Jika gagal, lempar error ke caller
+    try {
+      // Mulai mikrofon
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      audioContext = new AudioContext();
+      const source = audioContext.createMediaStreamSource(stream);
+      analyser = audioContext.createAnalyser();
+      analyser.fftSize = 2048;
+      dataArray = new Uint8Array(analyser.fftSize);
+      source.connect(analyser);
+
+      // Buat grafik
+      if (!chart) {
+        const ctx = document.getElementById('dbChart').getContext('2d');
+        chart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: timeLabels,
+            datasets: [{
+              label: 'dB',
+              data: dbData,
+              borderColor: 'blue',
+              fill: false,
+              tension: 0.3
+            }]
+          },
+          options: {
+            responsive: true,
+            animation: false,
+            scales: {
+              y: {
+                min: 0,
+                max: 100,
+                ticks: {
+                  stepSize: 10
+                }
+              }
+            }
+          }
+        });
+      }
+
+      // Loop pengukuran
+      intervalId = setInterval(() => {
+        analyser.getByteTimeDomainData(dataArray);
+        let sum = 0;
+        for (let i = 0; i < dataArray.length; i++) {
+          let val = (dataArray[i] - 128) / 128;
+          sum += val * val;
+        }
+        let rms = Math.sqrt(sum / dataArray.length);
+        let db = Math.max(0, Math.round(20 * Math.log10(rms) + 100));
+        const now = new Date().toLocaleTimeString();
+
+        // Update chart
+        dbData.push(db);
+        timeLabels.push(now);
+        if (dbData.length > 8) {
+          dbData.shift();
+          timeLabels.shift();
+        }
+        chart.update();
+
+        // Tampilkan ke tabel
+        const tbody = document.querySelector("#logTable tbody");
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${now}</td><td>${db}</td>`;
+        tbody.prepend(row);
+        while (tbody.rows.length > 4) tbody.deleteRow(-1);
+
+        // Tampilkan status
+        const statusBox = document.getElementById("statusBox");
+        document.getElementById("dbDisplay").innerText = `dB: ${db}`;
+        if (db > 80) {
+          statusBox.innerText = "BISING";
+          statusBox.style.backgroundColor = "red";
+
+          // Notifikasi lokal
+          if (Notification.permission === "granted") {
+            let currentTime = Date.now();
+            if (currentTime - lastNotificationTime > NOTIF_INTERVAL) {
+              new Notification("Peringatan Kebisingan!", {
+                body: `Suara bising terdeteksi: ${db} dB pada pukul ${now}`,
+                icon: "https://img.icons8.com/emoji/48/000000/loudspeaker-emoji.png"
+              });
+              lastNotificationTime = currentTime;
+            }
+          }
+        } else {
+          statusBox.innerText = "AMAN";
+          statusBox.style.backgroundColor = "green";
+        }
+
+        // Simpan lokal & kirim ke server
+        const logEntry = { time: now, db: db, status: db > 80 ? "BISING" : "AMAN" };
+        allLogs.push(logEntry);
+
+        // Kirim log ke server
+        fetch('/api/log', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(logEntry)
+        });
+
+      }, 1000);
+
+      monitoring = true;
+      toggleButton.innerText = "⏹️";
+      restartButton.style.display = "inline-block";
+
+    } catch (err) {
+      alert("Gagal mengakses mikrofon: " + err.message);
+    }
+
+  } else {
+    // Stop
+    clearInterval(intervalId);
+    stream.getTracks().forEach(track => track.stop());
+    audioContext.close();
+    monitoring = false;
+    toggleButton.innerText = "▶️";
   }
 }
 
-startBtn.addEventListener('click', async () => {
-  if (audioContext) {
-    stopMonitoring();
-    startBtn.textContent = 'Mulai Monitoring';
+function restartMonitoring() {
+  dbData.length = 0;
+  timeLabels.length = 0;
+  allLogs.length = 0;
+  lastNotificationTime = 0;
+
+  if (chart) chart.update();
+
+  document.querySelector("#logTable tbody").innerHTML = "";
+  document.getElementById("dbDisplay").innerText = "dB: -";
+  const statusBox = document.getElementById("statusBox");
+  statusBox.innerText = "Status";
+  statusBox.style.backgroundColor = "gray";
+}
+
+function showReport() {
+  if (allLogs.length === 0) {
+    alert("Belum ada data untuk laporan.");
     return;
   }
 
-  try {
-    const stream = await requestPermissions();
-    audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    micStream = audioContext.createMediaStreamSource(stream);
-    analyser = audioContext.createAnalyser();
-    analyser.fftSize = 256;
-    dataArray = new Uint8Array(analyser.frequencyBinCount);
-
-    micStream.connect(analyser);
-    monitor();
-    startBtn.textContent = 'Stop Monitoring';
-    statusText.textContent = 'Monitoring aktif...';
-  } catch (err) {
-    // Jika gagal memulai monitoring, tampilkan pesan
-    statusText.textContent = 'Gagal memulai monitoring!';
-  }
-});
-
-function monitor() {
-  analyser.getByteTimeDomainData(dataArray);
-
-  let sum = 0;
-  for (let i = 0; i < dataArray.length; i++) {
-    const normalized = (dataArray[i] - 128) / 128;
-    sum += normalized * normalized;
-  }
-
-  const rms = Math.sqrt(sum / dataArray.length);
-  const decibel = 20 * Math.log10(rms);
-  const dB = Math.max(0, Math.round(decibel + 100));
-
-  statusText.textContent = `Level Suara: ${dB} dB`;
-
-  if (dB > 80) {
-    showNotification(dB);
-    addToReport(dB);
-  }
-
-  animationId = requestAnimationFrame(monitor);
-}
-
-function stopMonitoring() {
-  if (audioContext) {
-    audioContext.close();
-    audioContext = null;
-  }
-  cancelAnimationFrame(animationId);
-  statusText.textContent = 'Monitoring dihentikan.';
-}
-
-function showNotification(dB) {
-  if (Notification.permission === 'granted' && !notified) {
-    new Notification('🚨 Ruangan Terlalu Berisik!!', {
-      body: `Level saat ini: ${dB} dB`,
-      icon: 'https://cdn-icons-png.flaticon.com/512/565/565340.png',
-      vibrate: [200, 100, 200],
-      sound: 'default',
-    });
-
-    notified = true;
-    setTimeout(() => notified = false, 10000);  // Reset pemberitahuan setelah 10 detik
-  }
-}
-
-function addToReport(dB) {
-  const now = new Date();
-  const time = now.toLocaleString();
-
-  const row = document.createElement('tr');
-  const timeCell = document.createElement('td');
-  const levelCell = document.createElement('td');
-
-  timeCell.textContent = time;
-  levelCell.textContent = dB;
-
-  row.appendChild(timeCell);
-  row.appendChild(levelCell);
-  tableBody.appendChild(row);
-
-  reportData.push({ time, level: dB });
-
-  // Menampilkan tabel jika ada data
-  if (reportData.length > 0) {
-    document.getElementById('reportTable').hidden = false; // Tampilkan tabel
-  }
-
-  // Aktifkan tombol download jika ada data
-  downloadBtn.disabled = false;
-}
-
-downloadBtn.addEventListener('click', () => {
-  if (reportData.length === 0) return;
-
-  let csv = 'Waktu,Level Suara (dB)\n';
-  reportData.forEach(row => {
-    csv += `${row.time},${row.level}\n`;
+  let csvContent = "data:text/csv;charset=utf-8,Waktu,dB,Status\n";
+  allLogs.forEach(log => {
+    csvContent += `${log.time},${log.db},${log.status}\n`;
   });
 
-  const blob = new Blob([csv], { type: 'text/csv' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = 'laporan_kebisingan.csv';
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "laporan_kebisingan.csv");
+  document.body.appendChild(link);
   link.click();
-});
+  document.body.removeChild(link);
+}

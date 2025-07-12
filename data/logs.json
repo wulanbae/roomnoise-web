@@ -1,0 +1,842 @@
+[
+  {
+    "time": "8:14:17 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:14:18 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:14:19 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:14:20 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:14:21 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:14:22 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:14:23 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:14:24 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:03 PM",
+    "db": 70,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:04 PM",
+    "db": 77,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:05 PM",
+    "db": 67,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:06 PM",
+    "db": 70,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:07 PM",
+    "db": 64,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:08 PM",
+    "db": 74,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:09 PM",
+    "db": 76,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:10 PM",
+    "db": 79,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:11 PM",
+    "db": 77,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:12 PM",
+    "db": 71,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:13 PM",
+    "db": 64,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:14 PM",
+    "db": 73,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:15 PM",
+    "db": 76,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:16 PM",
+    "db": 67,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:17 PM",
+    "db": 73,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:18 PM",
+    "db": 76,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:19 PM",
+    "db": 69,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:20 PM",
+    "db": 73,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:21 PM",
+    "db": 64,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:22 PM",
+    "db": 62,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:23 PM",
+    "db": 77,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:24 PM",
+    "db": 70,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:25 PM",
+    "db": 72,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:26 PM",
+    "db": 71,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:27 PM",
+    "db": 70,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:28 PM",
+    "db": 91,
+    "status": "BISING"
+  },
+  {
+    "time": "8:21:29 PM",
+    "db": 66,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:21:30 PM",
+    "db": 67,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:22:34 PM",
+    "db": 76,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:22:35 PM",
+    "db": 62,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:22:36 PM",
+    "db": 72,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:22:37 PM",
+    "db": 78,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:22:38 PM",
+    "db": 79,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:22:39 PM",
+    "db": 79,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:22:40 PM",
+    "db": 80,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:22:41 PM",
+    "db": 82,
+    "status": "BISING"
+  },
+  {
+    "time": "8:22:42 PM",
+    "db": 54,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:22:43 PM",
+    "db": 78,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:22:44 PM",
+    "db": 74,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:22:45 PM",
+    "db": 74,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:22:46 PM",
+    "db": 63,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:08 PM",
+    "db": 61,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:09 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:10 PM",
+    "db": 70,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:11 PM",
+    "db": 82,
+    "status": "BISING"
+  },
+  {
+    "time": "8:24:12 PM",
+    "db": 75,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:13 PM",
+    "db": 56,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:14 PM",
+    "db": 73,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:15 PM",
+    "db": 58,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:16 PM",
+    "db": 73,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:17 PM",
+    "db": 69,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:18 PM",
+    "db": 62,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:19 PM",
+    "db": 63,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:20 PM",
+    "db": 72,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:21 PM",
+    "db": 73,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:22 PM",
+    "db": 78,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:23 PM",
+    "db": 68,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:24 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:25 PM",
+    "db": 71,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:26 PM",
+    "db": 73,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:27 PM",
+    "db": 66,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:28 PM",
+    "db": 71,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:29 PM",
+    "db": 70,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:30 PM",
+    "db": 76,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:31 PM",
+    "db": 77,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:24:32 PM",
+    "db": 58,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:01 PM",
+    "db": 63,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:02 PM",
+    "db": 64,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:03 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:04 PM",
+    "db": 56,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:05 PM",
+    "db": 59,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:06 PM",
+    "db": 64,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:07 PM",
+    "db": 65,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:08 PM",
+    "db": 67,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:09 PM",
+    "db": 65,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:10 PM",
+    "db": 62,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:11 PM",
+    "db": 61,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:12 PM",
+    "db": 69,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:13 PM",
+    "db": 63,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:14 PM",
+    "db": 61,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:15 PM",
+    "db": 66,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:16 PM",
+    "db": 70,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:17 PM",
+    "db": 62,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:18 PM",
+    "db": 74,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:19 PM",
+    "db": 60,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:20 PM",
+    "db": 59,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:21 PM",
+    "db": 72,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:22 PM",
+    "db": 81,
+    "status": "BISING"
+  },
+  {
+    "time": "8:30:23 PM",
+    "db": 68,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:30:24 PM",
+    "db": 71,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:33:57 PM",
+    "db": 47,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:33:58 PM",
+    "db": 47,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:33:58 PM",
+    "db": 51,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:33:59 PM",
+    "db": 50,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:34:00 PM",
+    "db": 47,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:34:01 PM",
+    "db": 47,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:34:02 PM",
+    "db": 47,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:34:03 PM",
+    "db": 50,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:34:04 PM",
+    "db": 51,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:34:05 PM",
+    "db": 47,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:34:07 PM",
+    "db": 47,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:34:08 PM",
+    "db": 48,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:34:10 PM",
+    "db": 47,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:34:10 PM",
+    "db": 54,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:09 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:10 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:11 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:12 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:13 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:14 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:15 PM",
+    "db": 54,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:16 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:17 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:18 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:19 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:20 PM",
+    "db": 62,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:21 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:22 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:23 PM",
+    "db": 55,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:24 PM",
+    "db": 67,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:25 PM",
+    "db": 76,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:26 PM",
+    "db": 75,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:27 PM",
+    "db": 78,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:28 PM",
+    "db": 75,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:29 PM",
+    "db": 74,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:30 PM",
+    "db": 69,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:31 PM",
+    "db": 59,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:32 PM",
+    "db": 78,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:33 PM",
+    "db": 68,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:34 PM",
+    "db": 84,
+    "status": "BISING"
+  },
+  {
+    "time": "8:35:35 PM",
+    "db": 62,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:36 PM",
+    "db": 79,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:37 PM",
+    "db": 73,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:38 PM",
+    "db": 87,
+    "status": "BISING"
+  },
+  {
+    "time": "8:35:39 PM",
+    "db": 79,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:40 PM",
+    "db": 82,
+    "status": "BISING"
+  },
+  {
+    "time": "8:35:41 PM",
+    "db": 58,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:42 PM",
+    "db": 61,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:43 PM",
+    "db": 82,
+    "status": "BISING"
+  },
+  {
+    "time": "8:35:44 PM",
+    "db": 68,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:45 PM",
+    "db": 71,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:46 PM",
+    "db": 76,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:47 PM",
+    "db": 80,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:48 PM",
+    "db": 78,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:49 PM",
+    "db": 78,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:50 PM",
+    "db": 81,
+    "status": "BISING"
+  },
+  {
+    "time": "8:35:51 PM",
+    "db": 69,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:52 PM",
+    "db": 85,
+    "status": "BISING"
+  },
+  {
+    "time": "8:35:53 PM",
+    "db": 76,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:54 PM",
+    "db": 67,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:55 PM",
+    "db": 79,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:56 PM",
+    "db": 83,
+    "status": "BISING"
+  },
+  {
+    "time": "8:35:57 PM",
+    "db": 92,
+    "status": "BISING"
+  },
+  {
+    "time": "8:35:58 PM",
+    "db": 80,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:35:59 PM",
+    "db": 73,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:36:00 PM",
+    "db": 74,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:36:01 PM",
+    "db": 66,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:36:02 PM",
+    "db": 74,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:36:03 PM",
+    "db": 76,
+    "status": "AMAN"
+  },
+  {
+    "time": "8:36:04 PM",
+    "db": 66,
+    "status": "AMAN"
+  }
+]

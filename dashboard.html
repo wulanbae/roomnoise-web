@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#2196f3" />
+  <title>Dashboard Kebisingan - RoomNoise Monitor</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f2f2f2;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    .summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+      justify-content: space-between;
+    }
+
+    .card {
+      flex: 1 1 22%;
+      background: #2196f3;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .card span {
+      font-size: 1.6rem;
+      font-weight: bold;
+      display: block;
+    }
+
+    select {
+      padding: 6px 12px;
+      margin-bottom: 20px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    #chart-container {
+      height: 400px;
+      margin-bottom: 30px;
+    }
+
+    canvas {
+      height: 100% !important;
+      width: 100% !important;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-container {
+      max-height: 300px;
+      overflow-y: auto;
+      overflow-x: auto;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    thead th {
+      background: #333;
+      color: white;
+    }
+
+    /* === RESPONSIF UNTUK HP === */
+    @media screen and (max-width: 600px) {
+      .summary {
+        flex-direction: column;
+      }
+
+      .card {
+        flex: 1 1 100%;
+        font-size: 0.95rem;
+        padding: 12px;
+      }
+
+      select {
+        width: 100%;
+      }
+
+      table {
+        font-size: 0.85rem;
+      }
+
+      #chart-container {
+        height: 250px;
+      }
+
+      h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Dashboard Kebisingan - RoomNoise Monitor</h1>
+
+    <div class="summary">
+      <div class="card">Rata-rata dB<br><span id="avgDb">-</span></div>
+      <div class="card">Tertinggi<br><span id="maxDb">-</span></div>
+      <div class="card">Terendah<br><span id="minDb">-</span></div>
+      <div class="card">Peringatan<br><span id="alertCount">-</span></div>
+    </div>
+
+    <label for="range">Filter Waktu:</label>
+    <select id="range" onchange="loadData()">
+      <option value="all">Semua</option>
+      <option value="today">Hari Ini</option>
+      <option value="7days">7 Hari Terakhir</option>
+    </select>
+
+    <div id="chart-container">
+      <canvas id="chart"></canvas>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Waktu</th>
+            <th>dB</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="logBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    let chart;
+
+    async function loadData() {
+      const range = document.getElementById("range").value;
+      let url = "/api/log";
+      if (range !== "all") url += `?range=${range}`;
+
+      try {
+        const res = await fetch(url);
+        let rawData = await res.json();
+        if (!Array.isArray(rawData)) rawData = [];
+
+        const todayStr = new Date().toISOString().split("T")[0];
+        const data = rawData.map(d => {
+          const fullTime = new Date(`${todayStr} ${d.time}`);
+          return { ...d, fullTime };
+        });
+
+        const dbValues = data.map(d => d.db);
+        const avg = dbValues.length ? (dbValues.reduce((a, b) => a + b) / dbValues.length).toFixed(1) : 0;
+        const max = dbValues.length ? Math.max(...dbValues) : 0;
+        const min = dbValues.length ? Math.min(...dbValues) : 0;
+        const alerts = data.filter(d => d.db > 80).length;
+
+        document.getElementById("avgDb").innerText = avg;
+        document.getElementById("maxDb").innerText = max;
+        document.getElementById("minDb").innerText = min;
+        document.getElementById("alertCount").innerText = alerts;
+
+        const last20 = data.slice(-20);
+        const labels = last20.map(d => {
+          const t = d.fullTime;
+          const date = `${t.getDate().toString().padStart(2, '0')}/${(t.getMonth()+1).toString().padStart(2, '0')}`;
+          const time = t.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          return `${date} ${time}`;
+        });
+        const values = last20.map(d => d.db);
+
+        const ctx = document.getElementById("chart").getContext("2d");
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [{
+              label: "dB",
+              data: values,
+              borderColor: "blue",
+              backgroundColor: "rgba(33,150,243,0.2)",
+              tension: 0.3,
+              fill: true,
+              pointRadius: 3
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: false,
+            scales: {
+              y: {
+                min: 0,
+                max: 100,
+                ticks: { stepSize: 10 }
+              }
+            },
+            plugins: {
+              legend: { display: false }
+            }
+          }
+        });
+
+        const tbody = document.getElementById("logBody");
+        tbody.innerHTML = "";
+        data.slice().reverse().forEach(d => {
+          const time = `${d.fullTime.toLocaleDateString()} ${d.fullTime.toLocaleTimeString()}`;
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${time}</td>
+            <td>${d.db}</td>
+            <td style="color:${d.db>80 ? 'red' : d.db>60 ? 'orange' : 'blue'}">${d.status}</td>
+          `;
+          tbody.appendChild(row);
+        });
+
+      } catch (err) {
+        alert("Gagal memuat data: " + err.message);
+      }
+    }
+
+    loadData();
+  </script>
+</body>
+</html>
